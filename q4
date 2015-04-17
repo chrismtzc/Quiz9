@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+#include "BigIntegerLibrary.hh"
+
+bool PA (BigInteger c){
+
+  string d=bigIntegerToString(c);
+  reverse (d.begin(), d.end());
+  BigInteger e=stringToBigInteger(d);
+
+  return (c == e);
+}
+
+BigInteger notPalindrome(BigInteger c){
+
+  for(int z=0; z<=30 && PA(c) == false; z++)
+  {
+
+    string a=bigIntegerToString(c);
+    reverse(a.begin(), a.end());
+    BigInteger b=stringToBigInteger(a);
+    c=c+b;
+  }
+
+return c;
+}
+
+int main (){
+int contador_palindromo=0, contador_lycherel=0, contador_posible=0;
+int n1,n2;
+
+BigInteger num;
+cout<<"Please give me a number: "<<endl;
+cin>>n1;
+
+cout<<"Please give me the upper number: "<<endl;
+cin>>n2;
+
+  for (BigInteger n=x; n<=y; n = n + 1){
+    if(PA(n)==true){
+
+      contador_palindromo++;
+    } else {
+      num = notPalindrome(n);
+      if(PA(num)==true) {
+
+        contador_posible++;
+      } else {
+      cout <<"I found a Lycherel number: " <<n<< " is Lychrel." << endl;
+        contador_lycherel++;
+      }
+    }
+
+  }
+
+cout<<"Natural palindromes"<<contador_palindromo<<endl;
+cout<<"Numbers that eventually become palindromes"<<contador_posible<<endl;
+cout<<"Lycherel numbers"<<contador_lycherel<<endl;
+  return 0;
+}
